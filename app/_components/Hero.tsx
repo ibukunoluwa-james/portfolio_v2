@@ -57,9 +57,9 @@ export default function Hero() {
             }}
             className="hero-name"
           >
-            <span style={{ color: "var(--color-text-primary)" }}>Jordan</span>
+            <span style={{ color: "var(--color-text-primary)" }}>James</span>
             <br />
-            <span style={{ color: "#C95A14" }}>Davies</span>
+            <span style={{ color: "#C95A14" }}>Ibukunoluwa</span>
           </h1>
 
           {/* Role */}
