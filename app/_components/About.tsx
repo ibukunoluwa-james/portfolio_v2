@@ -72,7 +72,7 @@ export default function About() {
         {/* Left Column — Bio */}
         <div>
           <h3 style={{ fontSize: 21, fontWeight: 500, marginTop: 0, marginBottom: 18 }}>
-            Hi, I&apos;m Jordan
+            Hi, I&apos;m Ibukunoluwa
           </h3>
           {[
             "I'm a full-stack developer with a passion for creating seamless digital experiences. With over 3 years of experience, I specialize in building modern web applications that are both beautiful and performant.",

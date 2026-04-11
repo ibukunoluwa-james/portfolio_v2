@@ -133,7 +133,7 @@ export default function Hero() {
           </div>
 
           {/* Stats Row */}
-          <div
+          {/* <div
             style={{
               display: "flex",
               gap: 48,
@@ -187,7 +187,7 @@ export default function Hero() {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Right Column — Profile Card */}
@@ -277,12 +277,12 @@ export default function Hero() {
                 margin: "0 auto 16px",
               }}
             >
-              JD
+              JI
             </div>
 
             {/* Name */}
             <div style={{ fontSize: 17, fontWeight: 500, marginBottom: 4 }}>
-              Jordan Davies
+              James Ibukunoluwa
             </div>
 
             {/* Role */}
@@ -319,8 +319,8 @@ export default function Hero() {
                 { label: "Node.js", highlighted: true },
                 { label: "Next.js", highlighted: true },
                 { label: "TypeScript", highlighted: false },
-                { label: "UI/UX", highlighted: false },
-                { label: "Figma", highlighted: false },
+                { label: "Express.js", highlighted: false },
+                { label: "Rust", highlighted: false },
               ].map((skill) => (
                 <span
                   key={skill.label}

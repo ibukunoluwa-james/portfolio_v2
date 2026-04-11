@@ -13,19 +13,19 @@ export default function Footer() {
     >
       {/* Logo */}
       <span style={{ fontSize: 14, fontWeight: 500 }}>
-        JD<span style={{ color: "#C95A14" }}>.</span>
+        JI<span style={{ color: "#C95A14" }}>.</span>
       </span>
 
       {/* Copyright */}
       <span style={{ fontSize: 12, color: "var(--color-text-tertiary)" }}>
-        &copy; 2025 Jordan Davies. All rights reserved.
+        &copy; 2025 James Ibukunoluwa. All rights reserved.
       </span>
 
       {/* Social Links */}
       <div style={{ display: "flex", gap: 24 }}>
         {[
-          { label: "GitHub", href: "#" },
-          { label: "LinkedIn", href: "#" },
+          { label: "GitHub", href: "https://github.com/ibukunoluwa-james" },
+          { label: "LinkedIn", href: "https://www.linkedin.com/in/ibukunoluwa-james-0b98b0319/?skipRedirect=true" },
           { label: "Twitter", href: "#" },
         ].map((link) => (
           <a

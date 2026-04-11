@@ -1,4 +1,70 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? "";
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? "";
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? "";
+
+type Status = "idle" | "sending" | "sent" | "error";
+
 export default function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+  const [toastVisible, setToastVisible] = useState(false);
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const timerRef = toastTimerRef;
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  const showToast = () => {
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    setToastVisible(true);
+    toastTimerRef.current = setTimeout(() => setToastVisible(false), 4000);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (status === "sending") return;
+
+    setStatus("sending");
+    setErrorMsg("");
+
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        {
+          from_name: name,
+          from_email: email,
+          subject: subject.trim() || "Portfolio contact",
+          message,
+        },
+        { publicKey: PUBLIC_KEY }
+      );
+      setStatus("sent");
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+      showToast();
+    } catch (err) {
+      setStatus("error");
+      setErrorMsg(
+        err instanceof Error ? err.message : "Something went wrong. Try again."
+      );
+    }
+  };
+
   return (
     <section
       id="contact"
@@ -126,7 +192,7 @@ export default function Contact() {
                   </svg>
                 ),
                 label: "EMAIL",
-                value: "hello@jordandavies.dev",
+                value: "theibukunjames@gmail.com",
               },
               {
                 icon: (
@@ -228,7 +294,7 @@ export default function Contact() {
               padding: "32px 28px",
             }}
           >
-            <form>
+            <form onSubmit={handleSubmit}>
               {/* Row 1 — Name + Email */}
               <div
                 style={{
@@ -253,6 +319,9 @@ export default function Contact() {
                   <input
                     type="text"
                     placeholder="Jordan Smith"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
                     style={{
                       width: "100%",
                       padding: "10px 14px",
@@ -280,6 +349,9 @@ export default function Contact() {
                   <input
                     type="email"
                     placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
                     style={{
                       width: "100%",
                       padding: "10px 14px",
@@ -310,6 +382,8 @@ export default function Contact() {
                 <input
                   type="text"
                   placeholder="Project inquiry"
+                  value={subject}
+                  onChange={(e) => setSubject(e.target.value)}
                   style={{
                     width: "100%",
                     padding: "10px 14px",
@@ -338,6 +412,9 @@ export default function Contact() {
                 </label>
                 <textarea
                   placeholder="Tell me about your project..."
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  required
                   style={{
                     width: "100%",
                     padding: "10px 14px",
@@ -357,6 +434,7 @@ export default function Contact() {
               {/* Submit Button */}
               <button
                 type="submit"
+                disabled={status === "sending"}
                 style={{
                   width: "100%",
                   padding: 13,
@@ -366,14 +444,94 @@ export default function Contact() {
                   borderRadius: 8,
                   fontSize: 14,
                   fontWeight: 500,
-                  cursor: "pointer",
+                  cursor: status === "sending" ? "not-allowed" : "pointer",
+                  opacity: status === "sending" ? 0.7 : 1,
                   fontFamily: "inherit",
                   marginTop: 4,
                 }}
               >
-                Send message
+                {status === "sending" ? "Sending..." : "Send message"}
               </button>
+
+              {status === "error" && (
+                <div
+                  style={{
+                    marginTop: 12,
+                    fontSize: 13,
+                    color: "#b91c1c",
+                    textAlign: "center",
+                  }}
+                >
+                  {errorMsg || "Could not send message. Please try again."}
+                </div>
+              )}
             </form>
+          </div>
+        </div>
+      </div>
+
+      {/* Success Toast */}
+      <div
+        role="status"
+        aria-live="polite"
+        style={{
+          position: "fixed",
+          bottom: 24,
+          right: 24,
+          zIndex: 9999,
+          background: "#0f172a",
+          color: "white",
+          padding: "14px 18px",
+          borderRadius: 10,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.25)",
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          fontSize: 14,
+          fontFamily: "inherit",
+          minWidth: 260,
+          maxWidth: 360,
+          opacity: toastVisible ? 1 : 0,
+          transform: toastVisible ? "translateY(0)" : "translateY(12px)",
+          pointerEvents: toastVisible ? "auto" : "none",
+          transition: "opacity 220ms ease, transform 220ms ease",
+        }}
+      >
+        <div
+          style={{
+            width: 28,
+            height: 28,
+            borderRadius: "50%",
+            background: "#16a34a",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="white"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="20 6 9 17 4 12" />
+          </svg>
+        </div>
+        <div style={{ flex: 1 }}>
+          <div style={{ fontWeight: 500 }}>Message sent</div>
+          <div
+            style={{
+              fontSize: 12,
+              color: "rgba(255,255,255,0.7)",
+              marginTop: 2,
+            }}
+          >
+            Thanks — I&apos;ll get back to you shortly.
           </div>
         </div>
       </div>
