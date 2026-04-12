@@ -36,7 +36,7 @@ export default function Navigation() {
             color: "var(--color-text-primary)",
           }}
         >
-          JD
+          JI
           <span style={{ color: "#C95A14" }}>.</span>
         </span>
       </a>

@@ -1,24 +1,24 @@
 const workExperience = [
   {
-    role: "Full-Stack Developer Intern",
-    date: "2024 – 2025",
-    company: "Saiket Systems",
+    role: "Software Engineer (Frontend)",
+    date: "2025 – present",
+    company: "Quantum Leap",
     description:
-      "Developed and maintained web applications using React, Node.js, and MySQL. Collaborated on feature implementation, bug fixes, and performance optimization.",
+      "Developing responsive and high-performance user interfaces using React for client-facing applications. Collaborating closely with backend engineers to integrate APIs and deliver seamless user experiences. Improved frontend performance, fixed bugs, and implemented new features in fast-paced, production environments while maintaining clean and scalable code.",
   },
   {
-    role: "Volunteer Full-Stack Developer",
-    date: "2023 – 2025",
-    company: "Go with Fund.org",
+    role: "Full-Stack Developer (Projects)",
+    date: "2023 – present",
+    company: "Independent",
     description:
-      "Improved website UI/UX, managed CI/CD pipelines for streamlined deployment, and contributed to database design and optimization.",
+      "Architected and built full-stack applications using Django, Vite + React, and REST APIs, focusing on scalability and maintainability. Implemented secure authentication systems and optimized frontend performance for seamless user experiences. Delivered end-to-end solutions from design to deployment while applying modern software engineering best practices.",
   },
   {
-    role: "Freelance Developer & Designer",
+    role: "Frontend Developer (React)",
     date: "2022 – present",
-    company: "Self-employed",
+    company: "Freelance / Self-Driven",
     description:
-      "Built websites and web apps for 20+ clients across various industries. Handled design to deployment including ongoing maintenance.",
+      "Engineered responsive and high-performance user interfaces using React and JavaScript, improving usability and accessibility. Translated design concepts into functional interfaces while maintaining clean, reusable code. Continuously enhanced frontend architecture through component-based design and performance optimization techniques.",
   },
 ];
 
@@ -28,36 +28,41 @@ const education = [
     date: "2024 – 2028",
     company: "Covenant University",
     description:
-      "Transitioned from Industrial Mathematics. Building strong foundations in algorithms and software engineering.",
+      "Building a strong foundation in data structures, algorithms, and operating systems. Transitioned from Industrial Mathematics, leveraging a solid background in mathematics, physics, and analytical problem-solving to excel in software engineering.",
   },
   {
-    role: "Self-taught Development",
+    role: "Self-Taught Software Development",
     date: "2021 – present",
-    company: "freeCodeCamp, Udemy & docs",
+    company: "freeCodeCamp, Harvard Online & Technical Documentation",
     description:
-      "Continuously learning through projects, courses, and open-source contributions. Strong believer in learning by building.",
+      "Developed practical software engineering skills through hands-on projects and structured courses. Gained experience in JavaScript, React, and full-stack development by consistently building and deploying real-world applications.",
   },
 ];
 
 const techSkills = [
-  { name: "React / Next.js", pct: 90 },
-  { name: "TypeScript", pct: 85 },
-  { name: "Tailwind CSS", pct: 95 },
-  { name: "Node.js", pct: 80 },
-  { name: "Python", pct: 70 },
-  { name: "SQL / Databases", pct: 78 },
+  { name: "React", pct: 90 },
+  { name: "JavaScript (ES6+)", pct: 88 },
+  { name: "TypeScript", pct: 80 },
+  { name: "Tailwind CSS", pct: 92 },
+  { name: "Rust", pct: 65 },
+  { name: "REST APIs", pct: 82 },
+  { name: "SQL / Database Design", pct: 78 },
+  { name: "Git & Version Control", pct: 85 },
 ];
 
-const toolsHighlighted = ["Git & GitHub", "Figma"];
+const toolsHighlighted = [
+  "Git & GitHub",
+  "VS Code",
+  "Vercel",
+];
+
 const toolsNeutral = [
   "Docker",
-  "CI/CD",
+  "CI/CD (GitHub Actions)",
   "REST APIs",
   "GraphQL",
   "Jest",
-  "Vercel",
   "Linux",
-  "VS Code",
 ];
 
 const softSkills = [
